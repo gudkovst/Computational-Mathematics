@@ -9,7 +9,7 @@
 #define df(x) (2 * x)
 #define err(x) (fabs(x - sqrt(ROOT)))
 
-double Newton(int iters, int initValue){
+double Newton(int iters, double initValue){
 	double x[2];
 	x[0] = initValue;
 	for (int i = 0; i < iters; i++)
@@ -17,7 +17,7 @@ double Newton(int iters, int initValue){
 	return x[iters % 2];
 }
 
-double oneTangent(int iters, int initValue){
+double oneTangent(int iters, double initValue){
 	double x[2];
 	x[0] = initValue;
 	double c = df(initValue);
@@ -26,7 +26,7 @@ double oneTangent(int iters, int initValue){
 	return x[iters % 2];
 }
 
-double secant(int iters, int initValue1, int initValue2){
+double secant(int iters, double initValue1, double initValue2){
 	double x[3];
 	x[0] = initValue1;
 	x[1] = initValue2;
