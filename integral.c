@@ -17,9 +17,8 @@ double simpson(double a, double b, int n){
 	double len = (b - a) / n, res = 0;
 	for (int i = 0; i < n; i += 2){
 		double ai = a + len * i;
-		double bi = a + len * (i + 1);
-		double ci = a + len * (i + 2);
-		res += (f(ai) + f(ci) + 4 * f(bi / 2)) / 6 * len;
+		double bi = a + len * (i + 2);
+		res += (f(ai) + f(bi) + 4 * f((ai + bi) / 2)) / 6 * 2 * len;
 	}
 	return res;
 }
