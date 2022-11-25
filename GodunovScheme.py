@@ -1,5 +1,6 @@
 # Графики выводятся для при каждом N для всех r сразу, чтобы посмотреть для следующего N, нужно закрыть предыдущие
 # Для изменения количества одновременно выводимых графиков можно переносить табуляциями последнюю строку *plt.show()*
+# При закрытии анимации до её окончания вылетает Exception - не обращать внимания
 
 import matplotlib.pyplot as plt
 from matplotlib.animation import ArtistAnimation
@@ -68,3 +69,4 @@ for N in counts:
         animations.append(ArtistAnimation(fig, grafics, interval=1000, repeat=False))
         animations.append(ArtistAnimation(fig, shelfs, interval=1000, repeat=False))
     plt.show()
+
