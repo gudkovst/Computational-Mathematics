@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #define N 101 //размерность матрицы или число интервалов + 1
+#define a 2 //решаем уравнение y'' = a
 #define y0 0
 #define yN 0
 #define begin -10.
@@ -24,7 +25,7 @@ void fillSystem(double* A, double* f){
 		A[N * (N - 1) + i] = (i == N - 1);
 	f[0] = y0;
 	for (int i = 1; i < N - 1; i++)
-		f[i] = 2 * h * h;
+		f[i] = a * h * h;
 	f[N - 1] = yN;
 }
 
