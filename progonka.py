@@ -1,4 +1,5 @@
 N = 101 #размерность матрицы или число интервалов + 1
+a = 2 # решаем уравнение y'' = a
 y0 = 6
 yN = 4
 begin = 0
@@ -8,7 +9,7 @@ h = (end - begin) / (N - 1)
 
 def fillSystem():
     f = [y0]
-    f.extend([2 * h * h for i in range(1, N - 1)])
+    f.extend([a * h * h for i in range(1, N - 1)])
     f.append(yN)
 
     A = [[0 for i in range(N)] for i in range(N)]
