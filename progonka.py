@@ -1,10 +1,14 @@
-N = 101 #размерность матрицы или число интервалов + 1
-a = 2 # решаем уравнение y'' = a
+N = 5 #размерность матрицы или число интервалов + 1
+a = 2
 y0 = 6
 yN = 4
 begin = 0
 end = 10
 h = (end - begin) / (N - 1)
+
+#константы интегрирования для точного решения
+C = (y0 - yN - a/2 * (begin*begin - end*end)) / (begin - end)
+D = y0 - a/2 * begin*begin - C * begin
 
 
 def fillSystem():
@@ -48,16 +52,20 @@ solve = backward(alpha, beta)
 
 print(solve)
 import matplotlib.pyplot as plt
-x = [begin + i * h for i in range(N)]
+xs = [begin + i * h for i in range(N)]
+xe = [begin + i * (end - begin) / 1000 for i in range(1000)]
+ys = [a/2 * x*x + C * x + D for x in xe]
 ax = plt.axes()
 ax.spines['left'].set_position('center')
 ax.spines['bottom'].set_position('center')
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
-xlim = max(abs(begin), abs(end))
+xlim = max(abs(begin), abs(end)) + 5
 plt.xlim([-xlim, xlim])
-ylim = max(abs(min(solve)), abs(max(solve))) + 5
+ylim = max(abs(min(solve)), abs(max(solve)), abs(max(ys)), abs(min(ys))) + 5
 plt.ylim([-ylim, ylim])
-plt.plot(x, solve)
+plt.plot(xe, ys, 'b', label='exact solution')
+plt.plot(xs, solve, 'bo', label='numerical solution')
+plt.legend()
 plt.show()
 
